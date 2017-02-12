@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+{% block MAIN_BODY %}
+    <center>
+        <h2>Szczegóły </h2>
+        <h3><i class="fa fa-list-ul" aria-hidden="true"></i></h3>
+    </center>
+    <a href="{% url 'restaurant:card' %}"><h3><i class="fa fa-angle-left" aria-hidden="true"></i> Powrót</h3></a><br>
+   <table class="table table-responsive">
+        <thead>
+            <th></th>
+            <th>Danie</th>
+            <th>Cena</th>
+            <th>Czas przygotowania</th>
+            <th>Wegetariańskie</th>
+            <th>Data dodania</th>
+            <th>Data aktualizacji</th>
+        </thead>
+        <tbody>
+            {% for cat in categories %}
+                <tr style="font-weight: bold;">
+                    <td><h3>{{ cat.description }}</h3></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% for c in dishes %}
+                    {% if cat.name == c.dish.category.name %}
+                        <tr {% if c.dish.vege %} style="background-color: #b7ffce;" {% endif %}>
+                            <td>{{ c.image }}
+                                <img style="width: 100px;height: 70px;" src="{% if c.dish.image %} /{{ c.dish.image.url }}
+                                          {% else %}
+                                            {% static "images/dishes/no_image.png" %}
+                                          {% endif %}">
+                            </td>
+                            <td>{{ c.dish.name }}</td>
+                            <td>{{ c.dish.price }}</td>
+                            <td>{{ c.dish.prep_time }} min.</td>
+                            <td>{% if c.dish.vege %} TAK {% else %} NIE {% endif %}</td>
+                            <td>{{ c.dish.created }}</td>
+                            <td>{{ c.dish.updated }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+   </table>
+
+
+{% endblock %}

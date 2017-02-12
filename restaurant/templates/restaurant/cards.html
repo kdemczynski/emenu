@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+{% block MAIN_BODY %}
+    <center>
+        <h2>Dostępne karty menu</h2>
+        <h3><span class="glyphicon glyphicon-list-alt"></span></h3>
+    </center>
+
+   <table class="table table-responsive" id="table_sort">
+        <thead>
+            <th style="width:15%;">Karta menu</th>
+            <th>Opis</th>
+            <th>Ilość dań</th>
+            <th>Data dodania</th>
+            <th>Data aktualizacji</th>
+        </thead>
+        <tbody>
+            {% for c in cards %}
+                <tr style="cursor: pointer; height: 5%;" type="button"
+                                data-href="{% url 'restaurant:card_detail' c.id %}"
+                                class="btn-default clickable_row" id="btn_{{ c.id }}">
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.description }}</td>
+                    <td>{{ c.get_dishes_card.count }}</td>
+                    <td>{{ c.created }}</td>
+                    <td>{{ c.updated }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+   </table>
+
+
+{% endblock %}
