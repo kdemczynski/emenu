@@ -1,23 +1,26 @@
-from django.views.generic import TemplateView
-from django.shortcuts import render
+from restaurant.models import Card
+from restaurant.models import CardItems, Categories
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
-class BasicView(TemplateView):
-    template_name = "restaurant/templates/base.html"
-    kwargs = {}
+class CardList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'restaurant/cards.html'
 
-    def get_context_data(self, **kwargs):
-        self.context = super(BasicView, self).get_context_data(**kwargs)
-        self.menu = self.context['url_name'] = self.request.resolver_match.url_name
-        self.kwargs = kwargs
-
-        return self.context
-
-    def post(self, request, *args, **_kwargs):
-        self.context = {}
-        self.kwargs = _kwargs
-        self.menu = self.context['url_name'] = self.request.resolver_match.url_name
-
-        return render(request, 'restaurant/templates/base.html', self.context)
+    def get(self, request):
+        queryset = Card.objects.all()
+        return Response({'cards': queryset})
 
 
+class DishList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'restaurant/dish_detail.html'
+
+    def get(self, request, pk):
+        card_items = CardItems.objects.select_related().filter(card = pk).order_by('dish__price', 'dish__name')
+        cat = Categories.objects.select_related().all().order_by('sort')
+
+        return Response({'dishes': card_items,
+                         'categories': cat})
