@@ -7,7 +7,8 @@ class Card(models.Model):
     created             = models.DateTimeField(auto_now_add=True, verbose_name='Utworzono')
     updated             = models.DateTimeField(auto_now=True, verbose_name='Zaktualizowano')
 
-    class Meta:
+    class Meta:# pragma: no cover
+        managed = True
         ordering = ('name', )
         verbose_name = 'karta menu'
         verbose_name_plural = 'karty menu'
@@ -32,6 +33,7 @@ class Dish(models.Model):# pragma: no cover
     updated             = models.DateTimeField(auto_now=True, verbose_name='Zaktualizowano')
 
     class Meta:
+        managed = True
         ordering = ('name', )
         verbose_name = 'danie'
         verbose_name_plural = 'dania'
@@ -44,6 +46,9 @@ class CardItems(models.Model):# pragma: no cover
     card                = models.ForeignKey('Card', related_name='card')
     dish                = models.ForeignKey('Dish', related_name='dish')
 
+    class Meta:
+        managed = True
+
 
 class Categories(models.Model):# pragma: no cover
     name                = models.CharField(max_length=200, verbose_name='Nazwa')
@@ -53,6 +58,7 @@ class Categories(models.Model):# pragma: no cover
     updated             = models.DateTimeField(auto_now=True, verbose_name='Zaktualizowano')
 
     class Meta:
+        managed = True
         ordering = ('name', )
         verbose_name = 'kategoria'
         verbose_name_plural = 'kategorie'
