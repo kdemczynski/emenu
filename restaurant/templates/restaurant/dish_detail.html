@@ -5,9 +5,10 @@
 
 {% block MAIN_BODY %}
     <center>
-        <h2>Szczegóły </h2>
-        <h3><i class="fa fa-list-ul" aria-hidden="true"></i></h3>
+        <h2>{{ dishes.0.card.name }} </h2>
+{#        <h3><i class="fa fa-list-ul" aria-hidden="true"></i></h3>#}
     </center>
+    <br>
     <a class="float-shadow" href="{% url 'restaurant:card' %}"><h3><i class="fa fa-angle-left" aria-hidden="true"></i> Powrót</h3></a><br>
    <table class="table table-responsive">
         <thead>
@@ -33,13 +34,13 @@
                 {% for c in dishes %}
                     {% if cat.name == c.dish.category.name %}
                         <tr {% if c.dish.vege %} style="background-color: #b7ffce;" {% endif %}>
-                            <td>{{ c.image }}
+                            <td>
                                 <img style="width: 100px;height: 70px;" src="{% if c.dish.image %} /{{ c.dish.image.url }}
                                           {% else %}
                                             {% static "images/dishes/no_image.png" %}
                                           {% endif %}">
                             </td>
-                            <td>{{ c.dish.name }}</td>
+                            <td><h5><a class="float-shadow" data-toggle="modal" data-target="#detail_{{ c.dish.id }}" style="color: #006DCC; cursor:pointer;" data-toggle="tooltip" title="Szczegóły"> {{ c.dish.name }} </a></h5></td>
                             <td>{{ c.dish.price }}</td>
                             <td>{{ c.dish.prep_time }} min.</td>
                             <td>{% if c.dish.vege %} TAK {% else %} NIE {% endif %}</td>
@@ -52,5 +53,54 @@
         </tbody>
    </table>
 
+
+
+
+
+{#  DETAIL MODAL #}
+        <!-- Modal -->
+{% for c in dishes %}
+        <div id="detail_{{ c.dish.id }}" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h2 class="modal-title">{{ c.dish.name }}</h2></center>
+              </div>
+              <div class="modal-body">
+                    <table class="table without_background">
+                      <tbody>
+                        <tr>
+                            <td style="border: none; width: 35%;">
+                                <h4><img style="width: 100px;height: 70px;" src="{% if c.dish.image %} /{{ c.dish.image.url }}
+                                                                                  {% else %}
+                                                                                    {% static "images/dishes/no_image.png" %}
+                                                                                  {% endif %}"> </h4>
+                            </td>
+                            <td style="border: none;"><h5 style="text-align: left;">{{ c.dish.description }}</h5></td> </tr>
+                        <tr>
+                            <td style="border: none;"><h4>Cena [zł] </h4></td>
+                            <td style="border: none;"><h5 style="text-align: left;"> {{ c.dish.price }} </h5></td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><h4>Czas przygotowania </h4></td>
+                            <td style="border: none;"><h5 style="text-align: left;"> {{ c.dish.prep_time }} min. </h5></td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;"><h4>Wegetariańskie? </h4></td>
+                            <td style="border: none;"><h5 style="text-align: left;"> {% if c.dish.vege %} Tak {% else %} Nie {% endif %} </h5></td>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div class="modal-footer">
+                <center><button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button></center>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+{#   DETAIL MODAL __END#}
 
 {% endblock %}

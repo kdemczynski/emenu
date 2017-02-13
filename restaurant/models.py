@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Card(models.Model):
-    name                = models.CharField(max_length=200, unique=True, db_index=True)
-    description         = models.TextField(blank=True)
-    created             = models.DateTimeField(auto_now_add=True)
-    updated             = models.DateTimeField(auto_now=True)
+    name                = models.CharField(max_length=200, unique=True, db_index=True, verbose_name='Nazwa')
+    description         = models.TextField(blank=True, verbose_name='Opis')
+    created             = models.DateTimeField(auto_now_add=True, verbose_name='Utworzono')
+    updated             = models.DateTimeField(auto_now=True, verbose_name='Zaktualizowano')
 
     class Meta:
         ordering = ('name', )
@@ -21,15 +21,15 @@ class Card(models.Model):
 
 
 class Dish(models.Model):
-    name                = models.CharField(max_length=200)
-    description         = models.TextField(blank=True)
-    category            = models.ForeignKey('Categories', default=1)
-    image               = models.ImageField(upload_to='static/images/dishes', blank=True)
-    price               = models.DecimalField(max_digits=10, decimal_places=2)
-    prep_time           = models.IntegerField()
-    vege                = models.BooleanField(default=True)
-    created             = models.DateTimeField(auto_now_add=True)
-    updated             = models.DateTimeField(auto_now=True)
+    name                = models.CharField(max_length=200, verbose_name='Nazwa')
+    description         = models.TextField(blank=True, verbose_name='Opis')
+    category            = models.ForeignKey('Categories', default=1, verbose_name='Kategoria')
+    image               = models.ImageField(upload_to='static/images/dishes', blank=True, verbose_name='Zdjęcie')
+    price               = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Cena')
+    prep_time           = models.IntegerField(verbose_name='Czas przygotowania [min.]')
+    vege                = models.BooleanField(default=True, verbose_name='Wegetariańskie')
+    created             = models.DateTimeField(auto_now_add=True, verbose_name='Utworzono')
+    updated             = models.DateTimeField(auto_now=True, verbose_name='Zaktualizowano')
 
     class Meta:
         ordering = ('name', )
@@ -46,11 +46,11 @@ class CardItems(models.Model):
 
 
 class Categories(models.Model):
-    name                = models.CharField(max_length=200)
-    description         = models.CharField(max_length=200, blank=True)
-    sort                = models.IntegerField(blank=True, default=1)
-    created             = models.DateTimeField(auto_now_add=True)
-    updated             = models.DateTimeField(auto_now=True)
+    name                = models.CharField(max_length=200, verbose_name='Nazwa')
+    description         = models.CharField(max_length=200, blank=True, verbose_name='Opis')
+    sort                = models.IntegerField(blank=True, default=1, verbose_name='Kolejność sortowania')
+    created             = models.DateTimeField(auto_now_add=True, verbose_name='Utworzono')
+    updated             = models.DateTimeField(auto_now=True, verbose_name='Zaktualizowano')
 
     class Meta:
         ordering = ('name', )

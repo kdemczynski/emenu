@@ -11,6 +11,7 @@ class CardAdmin(admin.ModelAdmin):# pragma: no cover
     list_display = ['name', 'created', 'updated']
     list_filter = ['name', 'created', 'updated']
     inlines = [CardItemsInline]
+    search_fields = ['name']
 
 
 class DishAdmin(admin.ModelAdmin):# pragma: no cover

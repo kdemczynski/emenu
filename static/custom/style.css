@@ -27,6 +27,10 @@ h3 {
   box-shadow: none;
 }
 
+.without_background tbody td {
+  background-color: transparent;
+}
+
 /*!* Float Shadow *!*/
 .float-shadow {
   display: inline-block;
