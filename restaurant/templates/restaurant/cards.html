@@ -18,19 +18,21 @@
             <th>Data aktualizacji</th>
         </thead>
         <tbody>
-            {% for c in cards %}
-                {% if c.get_dishes_card.count > 0 %}
-                    <tr style="cursor: pointer; height: 5%;" type="button"
-                                    data-href="{% url 'restaurant:card_detail' c.id %}"
-                                    class="btn-default clickable_row" id="btn_{{ c.id }}">
-                        <td>{{ c.name }}</td>
-                        <td>{{ c.description }}</td>
-                        <td>{{ c.get_dishes_card.count }}</td>
-                        <td>{{ c.created }}</td>
-                        <td>{{ c.updated }}</td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
+            {% if cards %}
+                {% for c in cards %}
+                    {% if c.get_dishes_card.count > 0 %}
+                        <tr style="cursor: pointer; height: 5%;" type="button"
+                                        data-href="{% url 'restaurant:card_detail' c.id %}"
+                                        class="btn-default clickable_row" id="btn_{{ c.id }}">
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.description }}</td>
+                            <td>{{ c.get_dishes_card.count }}</td>
+                            <td>{{ c.created }}</td>
+                            <td>{{ c.updated }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </tbody>
    </table>
 
