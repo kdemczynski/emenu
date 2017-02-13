@@ -20,7 +20,7 @@ class Card(models.Model):
         return self.name
 
 
-class Dish(models.Model):
+class Dish(models.Model):# pragma: no cover
     name                = models.CharField(max_length=200, verbose_name='Nazwa')
     description         = models.TextField(blank=True, verbose_name='Opis')
     category            = models.ForeignKey('Categories', default=1, verbose_name='Kategoria')
@@ -40,12 +40,12 @@ class Dish(models.Model):
         return self.name
 
 
-class CardItems(models.Model):
+class CardItems(models.Model):# pragma: no cover
     card                = models.ForeignKey('Card', related_name='card')
     dish                = models.ForeignKey('Dish', related_name='dish')
 
 
-class Categories(models.Model):
+class Categories(models.Model):# pragma: no cover
     name                = models.CharField(max_length=200, verbose_name='Nazwa')
     description         = models.CharField(max_length=200, blank=True, verbose_name='Opis')
     sort                = models.IntegerField(blank=True, default=1, verbose_name='Kolejność sortowania')

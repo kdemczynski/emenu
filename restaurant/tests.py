@@ -6,6 +6,7 @@ from django.test import RequestFactory
 from restaurant import admin
 from django.db.models import ImageField
 
+
 # models.py
 class CardModelTestCase(TestCase):
     def setUp(self):
@@ -62,24 +63,6 @@ class CategoriesModelTestCase(TestCase):
         self.assertEqual(str(Categories._meta.verbose_name_plural), "kategorie")
 
 
-# class TestY(TestCase):
-#
-#     def test_model_relation(self):
-#         x = Dish.objects.create(name="test1")
-#         y = Y(event=X.objects.create(name="test2"))
-#         y.full_clean()  # `event` correctly set. This should pass
-#         y.save()
-#         self.assertEqual(Y.objects.filter(event__name="test2").count(), 1)
-#
-#     def test_model_relation__event_missing(self):
-#         x = X.objects.create(name="test1")
-#         y = Y()  # Y without `event` set
-#         with self.assertRaises(ValidationError):
-#             y.full_clean()
-#             y.save()
-#         self.assertEqual(Y.objects.filter(event__name="test2").count(), 0)
-
-
 # views.py
 class CardListTestCase(TestCase):
     def test_get(self):
@@ -95,24 +78,3 @@ class DishListTestCase(TestCase):
         view = DishList.as_view(template_name='restaurant/dish_detail.html')
         response = view(request, 1)
         self.assertEqual(response.status_code, 200)
-
-
-# admin.py
-# class TestAdminConfig(TestCase):
-#
-#     def test_admin_fieldname_lists(self):
-#         model_classnames = ['CardAdmin']
-#         admin_fieldname_lists = ['list_display']
-#
-#         for model_classname in model_classnames:
-#             model_class = locate("restaurant.models.%s" % model_classname)
-#             admin_class = locate("restaurant.admin.%s" % model_classname)
-#             # #print("classes: %s, %s" % (model_class.__name__, admin_class.__name__))
-#             for list_name in admin_fieldname_lists:
-#                 #print("    list: %s" % list_name)
-#                 for fieldname in getattr(admin_class, list_name):
-#                     fieldname = fieldname.replace("^", "")
-#                     #print("       field: %s" % fieldname)
-#                     if fieldname in dir(model_class): continue
-#                     if fieldname in dir(admin_class): continue
-#                     model_class.objects.filter(**{fieldname:None})
