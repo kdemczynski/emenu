@@ -21,36 +21,10 @@
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static 'custom/main.js' %}"></script>
 
 </head>
 <body>
-<script>
-$(document).ready(function ($) {
-            $(".clickable_row").click(function () {
-                window.document.location = $(this).data("href");
-            }); // clickable end
-            $('#table_sort').dataTable({
-                "paging":   true,
-                "info":     false,
-                "searching":   true,
-                "language": {
-                    "lengthMenu": "Pokazuj _MENU_ rekordów na stronę",
-                    "zeroRecords": "Nie znaleziono żadnych rekordów",
-                    "info": "Strona _PAGE_ z _PAGES_",
-                    "infoEmpty": "Nie znaleziono żadnych rekordów",
-                    "search": "Szukaj w tabeli:",
-                    "paginate": {
-                        "first": "Pierwsza",
-                        "last": "Ostatnia",
-                        "next": "Następna",
-                        "previous": "Poprzednia"
-                    }
-                },
-
-            });
-
-}); //document end
-</script>
 <div style="padding-bottom: 50px;">
 {% block MENU %}
 
@@ -59,7 +33,6 @@ $(document).ready(function ($) {
             <div class="col-md-12" id="navbar" style="float: left; margin-bottom:5px">
                 <center>
                     <h3 class="top_name" style="color: white; line-height: 15px; padding-top: 0px; padding-left: 50px;">eMenu Restaurant</h3>
-{#                    <k class="top_name_after"><span style="color: white; margin-left: 100px;line-height: 1px;">BlueMedia S.A</span></k>#}
                 </center>
             </div>
           </div><!-- /.container-fluid -->

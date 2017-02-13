@@ -6,7 +6,6 @@
 {% block MAIN_BODY %}
     <center>
         <h2>{{ dishes.0.card.name }} </h2>
-{#        <h3><i class="fa fa-list-ul" aria-hidden="true"></i></h3>#}
     </center>
     <br>
     <a class="float-shadow" href="{% url 'restaurant:card' %}"><h3><i class="fa fa-angle-left" aria-hidden="true"></i> Powrót</h3></a><br>
@@ -35,10 +34,10 @@
                     {% if cat.name == c.dish.category.name %}
                         <tr {% if c.dish.vege %} style="background-color: #b7ffce;" {% endif %}>
                             <td>
-                                <img style="width: 100px;height: 70px;" src="{% if c.dish.image %} /{{ c.dish.image.url }}
-                                          {% else %}
-                                            {% static "images/dishes/no_image.png" %}
-                                          {% endif %}">
+                                <img style="width: 100px; height: 70px;" src="{% if c.dish.image %} /{{ c.dish.image.url }}
+                                                      {% else %}
+                                                                {% static "images/dishes/no_image.png" %}
+                                                      {% endif %}">
                             </td>
                             <td><h5><a class="float-shadow" data-toggle="modal" data-target="#detail_{{ c.dish.id }}" style="color: #006DCC; cursor:pointer;" data-toggle="tooltip" title="Szczegóły"> {{ c.dish.name }} </a></h5></td>
                             <td>{{ c.dish.price }}</td>
@@ -78,7 +77,8 @@
                                                                                     {% static "images/dishes/no_image.png" %}
                                                                                   {% endif %}"> </h4>
                             </td>
-                            <td style="border: none;"><h5 style="text-align: left;">{{ c.dish.description }}</h5></td> </tr>
+                            <td style="border: none;"><h5 style="text-align: left;">{{ c.dish.description }}</h5></td>
+                        </tr>
                         <tr>
                             <td style="border: none;"><h4>Cena [zł] </h4></td>
                             <td style="border: none;"><h5 style="text-align: left;"> {{ c.dish.price }} </h5></td>

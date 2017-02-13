@@ -42,15 +42,12 @@ INSTALLED_APPS = [
     'django_nose',
 ]
 
-# Use nose to run all tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-# Tell nose to measure coverage
 NOSE_ARGS = [
     '--with-coverage',
     '--cover-package=restaurant',
 ]
-
 COVERAGE_CODE_EXCLUDES = [
                             'def __unicode__\(self\):',
                             'def get_absolute_url\(self\):',

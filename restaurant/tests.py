@@ -3,7 +3,6 @@ from .models import CardItems, Card, Dish, Categories
 from .views import CardList, DishList
 from django.db import models
 from django.test import RequestFactory
-from restaurant import admin
 from django.db.models import ImageField
 
 
@@ -15,15 +14,10 @@ class CardModelTestCase(TestCase):
         card = Card.objects.get(name="Test")
         dish = Dish.objects.get(name="Danie1")
         CardItems.objects.create(card_id = card.id, dish_id = dish.id)
-        print('tsetsd')
 
     def test_card_query(self):
         card = Card.objects.get(name="Test")
         self.assertEqual(card.description, 'Karta utworzona na potrzeby testow')
-
-    # def test_card_timezone(self):
-    #     card = Card.objects.get(name="Test")
-    #     self.assertEqual(card.created, timezone.now())
 
     def test_get_dishes_func(self):
         card = CardItems.objects.get(card_id = 1, dish_id=1)
