@@ -3,9 +3,9 @@
 /.idea
 /static_nginx
 /deploy/
-/label/__pycache__/
-/label_uwm/__pycache__/
-/label_uwm/migrations/__pycache__/
-/label_uwm/models/__pycache__/
-/label_uwm/tabs/__pycache__/
+/emenu/__pycache__/
+/emenu/__pycache__/
+/emenu/migrations/__pycache__/
+/emenu/models/__pycache__/
+/emenu/tabs/__pycache__/
 
