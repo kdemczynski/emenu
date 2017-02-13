@@ -1,0 +1,11 @@
+﻿.idea
+.idea/workspace.xml
+/.idea
+/static_nginx
+/deploy/
+/label/__pycache__/
+/label_uwm/__pycache__/
+/label_uwm/migrations/__pycache__/
+/label_uwm/models/__pycache__/
+/label_uwm/tabs/__pycache__/
+
