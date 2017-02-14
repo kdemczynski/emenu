@@ -10,7 +10,7 @@ class CardList(APIView):
     template_name = 'restaurant/cards.html'
 
     def get(self, request):
-        queryset = Card.objects.all()
+        queryset = Card.objects.all().order_by('id')
         return Response({'cards': queryset})
 
 
