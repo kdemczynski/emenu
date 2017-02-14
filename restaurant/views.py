@@ -19,7 +19,7 @@ class DishList(APIView):
     template_name = 'restaurant/dish_detail.html'
 
     def get(self, request, pk):
-        card_items = CardItems.objects.select_related().filter(card = pk).order_by('dish__price', 'dish__name')
+        card_items = CardItems.objects.select_related('dish', 'card').filter(card = pk).order_by('dish__price', 'dish__name')
         cat = Categories.objects.select_related().all().order_by('sort')
 
         return Response({'dishes': card_items,
